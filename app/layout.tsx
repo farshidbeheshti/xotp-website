@@ -5,6 +5,8 @@ import Container from "@mui/material/Container";
 import { Header, Footer } from "@/components/layout/";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
+import { CssBaseline } from "@mui/material";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "XOTP",
@@ -117,15 +119,18 @@ export default function RootLayout({
         <meta property="og:image:height" content="1200" />
       </head>
       <body>
-        <Grid container minHeight={"100%"} direction={"column"}>
-          <Header />
-          <Grid container flexGrow={1} alignItems={"center"} role="main">
-            <Container>
-              <main>{children}</main>
-            </Container>
+        <React.Fragment>
+          <CssBaseline />
+          <Grid container minHeight={"100%"} direction={"column"}>
+            <Header />
+            <Grid container flexGrow={1} alignItems={"center"} role="main">
+              <Container>
+                <main>{children}</main>
+              </Container>
+            </Grid>
+            <Footer />
           </Grid>
-          <Footer />
-        </Grid>
+        </React.Fragment>
         <GoogleAnalytics gaId="G-8W7L3479CL" />
         <Script id="gtm" strategy="afterInteractive">
           {`<!-- Google tag (gtag.js) -->window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('config', 'G-8W7L3479CL');`}
