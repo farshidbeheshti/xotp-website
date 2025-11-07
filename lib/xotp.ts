@@ -1,17 +1,8 @@
 "use server";
 import * as xotp from "xotp";
+import { OTPOptions, OTPResult } from '@/types/otp';
 
-export async function createTOTPToken(
-  options = {
-    algorithm: string,
-    duration: number,
-    digits: number,
-    window: number,
-    issuer: string,
-    account: string,
-    secret: string,
-  }
-) {
+export async function createTOTPToken(options: OTPOptions): Promise<OTPResult> {
   const totp = new xotp.TOTP(options);
 
   const secret = options?.secret
@@ -19,9 +10,7 @@ export async function createTOTPToken(
     : new xotp.Secret();
 
   return {
-    token: totp.generate({
-      secret,
-    }),
+    token: totp.generate({ secret }),
     remaining: totp.timeRemaining(),
     generatedAt: Date.now(),
     keyUri: totp.keyUri({
