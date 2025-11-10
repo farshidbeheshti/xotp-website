@@ -1,51 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 html, body, :root {
   height: 0;
   min-height: 100%;
 }
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
-.header{
-  border-bottom: 1px solid #e5e7eb;
+
+.header {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
   padding: 24px 0;
+  backdrop-filter: blur(10px);
+  background: rgba(15, 23, 42, 0.8);
 }
+
 .header .logo {
   vertical-align: middle;
-  
 }
+
 .header a {
   font-weight: 700;
-  color: #020817;
+  color: #f8fafc;
   text-decoration: none;
   margin: 0 4px;
-   
 }
+
 footer {
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
   text-align: center;
-  padding: 24px 0 ;
+  padding: 24px 0;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
 }
-footer *{
-  color: #4b5563;
+
+footer * {
+  color: #cbd5e1;
 }
+
 footer a {
   margin-left: 4px;
+  color: #3b82f6;
 }
 
 /* #0009 */

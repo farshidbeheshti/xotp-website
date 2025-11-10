@@ -1,4 +1,12 @@
-import { Stack, Box, Typography, TextField } from "@mui/material";
+import {
+  Stack,
+  Box,
+  Typography,
+  TextField,
+  IconButton,
+  InputAdornment,
+} from "@mui/material";
+import { ContentCopy } from "@mui/icons-material";
 import { QRCodeSVG } from "qrcode.react";
 import { RemainingTime } from "@/components/RemainingTime";
 import { OTPResult } from "@/types/otp";
@@ -20,7 +28,24 @@ export function OTPDisplay({ otp, duration, remaining }: OTPDisplayProps) {
         </Typography>
       </Box>
 
-      <QRCodeSVG value={otp.keyUri} size={186} />
+      <Box
+        sx={{
+          padding: 2,
+          backgroundColor: "white",
+          borderRadius: 2,
+          boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
+          margin: 2,
+        }}
+      >
+        <QRCodeSVG
+          value={otp.keyUri}
+          size={180}
+          bgColor="#ffffff"
+          fgColor="#000000"
+          level="M"
+          includeMargin={true}
+        />
+      </Box>
 
       <TextField
         fullWidth
@@ -30,6 +55,9 @@ export function OTPDisplay({ otp, duration, remaining }: OTPDisplayProps) {
         value={otp.keyUri}
         slotProps={{ htmlInput: { readOnly: true } }}
         focused
+        InputProps={{
+          endAdornment: <InputAdornment position="end"></InputAdornment>,
+        }}
       />
     </Stack>
   );

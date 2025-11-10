@@ -1,9 +1,10 @@
 "use client";
-import Grid from "@mui/material/Grid2";
+import { Grid, Card, CardContent, Typography } from "@mui/material";
 import { useOTPGenerator } from "@/hooks/useOTPGenerator";
 import { useDebounce } from "@/hooks/useDebounce";
 import { OTPControls } from "@/components/forms/OTPControls";
 import { OTPDisplay } from "@/components/ui/OTPDisplay";
+
 import { DEFAULT_OTP_OPTIONS } from "@/constants/otp";
 import { OTPOptions } from "@/types/otp";
 
@@ -25,24 +26,48 @@ export default function Index() {
   };
 
   return (
-    <Grid container alignItems="center" columnSpacing={1}>
-      <Grid container size={{ sm: 12, md: 6 }} order={{ xs: 1, md: 0 }}>
-        <OTPControls options={options} onOptionsChange={handleOptionsChange} />
+    <Grid container spacing={2} sx={{ height: "calc(100vh - 200px)" }}>
+      {/* Controls Panel */}
+      <Grid item xs={12} lg={4}>
+        <Card sx={{ height: "100%" }}>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              Configuration
+            </Typography>
+            <OTPControls
+              options={options}
+              onOptionsChange={handleOptionsChange}
+            />
+          </CardContent>
+        </Card>
       </Grid>
 
-      <Grid
-        flexGrow={1}
-        container
-        size={{ sm: 12, md: 6 }}
-        padding={2}
-        alignItems="center"
-      >
-        <OTPDisplay
-          otp={otp}
-          duration={options.duration}
-          remaining={remaining}
-        />
+      {/* Result Panel */}
+      <Grid item xs={12} lg={4}>
+        <Card sx={{ height: "100%" }}>
+          <CardContent
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              height: "100%",
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              Live Result
+            </Typography>
+            <OTPDisplay
+              otp={otp}
+              duration={options.duration}
+              remaining={remaining}
+            />
+          </CardContent>
+        </Card>
       </Grid>
+
+      {/* Code Panel */}
+      <Grid item xs={12} lg={4}></Grid>
     </Grid>
   );
 }
